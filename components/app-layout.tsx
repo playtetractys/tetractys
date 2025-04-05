@@ -42,8 +42,8 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
 
         <h1 className="text-[42px] md:text-5xl font-mono mt-3">tetractys</h1>
 
-        <p className="mt-4 mb-20 md:text-lg text-center italic font-serif">
-          the eternal process transforms the product
+        <p className="mt-7 mb-20 md:text-lg text-center italic font-serif">
+          A Game of Galactic Exploration and Conquest
         </p>
 
         <Auth />

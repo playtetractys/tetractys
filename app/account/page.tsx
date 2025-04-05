@@ -2,14 +2,19 @@
 
 import Link from "next/link";
 import { useState, useCallback } from "react";
+import { useRouter } from "next/navigation";
 
 // Services
 import { useSoilContext } from "@/soil/context";
 import { signIn, signUserOut, updateUserEmail, updateUserPassword } from "@/soil/services/auth";
+
+// Components
 import { Auth } from "@/components/auth";
 
 export default function Account() {
   const { user, isAdmin } = useSoilContext();
+  const router = useRouter();
+
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -72,8 +77,8 @@ export default function Account() {
   );
 
   const handleSignOut = useCallback(() => {
-    signUserOut().then(() => window.location.reload());
-  }, []);
+    signUserOut().then(() => router.push("/"));
+  }, [router]);
 
   if (!user) return null;
 
