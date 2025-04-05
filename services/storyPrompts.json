@@ -1,0 +1,21 @@
+{
+  "createdAt": 1742076445000,
+  "hierarchy": [
+    {
+      "questionPrompt": "generate questions to help the user write a summary of a story",
+      "resultPrompt": "summarize this story based on the prompt and Q & As",
+      "nextButtonText": "Create a chapter"
+    },
+    {
+      "questionPrompt": "generate questions to help the user write a summary of a chapter in this story",
+      "resultPrompt": "summarize this chapter based on the story summary, prompt, and Q & As",
+      "nextButtonText": "Create a scene"
+    },
+    {
+      "questionPrompt": "generate questions to help the user write a scene in this chapter of the story",
+      "resultPrompt": "write this scene based on the story summary, chapter summary, prompt, and Q & As"
+    }
+  ],
+  "publicAccess": true,
+  "updatedAt": 1742076445000
+}

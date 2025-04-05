@@ -1,0 +1,87 @@
+{
+  "rules": {
+    ".read": "root.child('admins').child(auth.uid).val() === true",
+    ".write": "root.child('admins').child(auth.uid).val() === true",
+    "appVersion": {
+      ".read": true
+    },
+    "appSettings": {
+      ".read": true
+    },
+    "credits": {
+      "$uid": {
+        ".read": "auth.uid === $uid"
+      }
+    },
+    "tracking": {
+      "$uid": {
+        "$trackingKey": {
+          ".read": "auth.uid === $uid",
+          ".write": "!data.exists() && auth !== null && auth.uid === $uid"
+        }
+      }
+    },
+    "userDataLists": {
+      "$uid": {
+        ".read": "auth.uid === $uid",
+        ".write": "auth.uid === $uid",
+        "$dataType": {
+          "$dataKey": {
+            ".read": "data.val() === null || (data.child('publicAccess').val() === true && auth !== null) || root.child('owners').child($dataType).child($dataKey).child(auth.uid).exists() || (data.child('connectionAccess/read').val() === true && root.child('connectionDataLists').child(data.child('connectionAccess/connectionType').val()).child(data.child('connectionAccess/connectionKey').val()).child(data.child('connectionAccess/uidDataType').val()).child(auth.uid).exists())",
+            ".write": "root.child('owners').child($dataType).child($dataKey).child(auth.uid).exists() || (data.child('connectionAccess/write').val() === true && root.child('connectionDataLists').child(data.child('connectionAccess/connectionType').val()).child(data.child('connectionAccess/connectionKey').val()).child(data.child('connectionAccess/uidDataType').val()).child(auth.uid).exists())",
+            ".validate": "newData.isNumber()"
+          }
+        }
+      }
+    },
+    "publicDataLists": {
+      "$dataType": {
+        ".read": "auth !== null",
+        "$dataKey": {
+          ".write": "root.child('owners').child($dataType).child($dataKey).child(auth.uid).exists()",
+          ".validate": "newData.isNumber()"
+        }
+      }
+    },
+    "data": {
+      "$dataType": {
+        ".read": "root.child('publicDataType').child($dataType).val() === true",
+        "$dataKey": {
+          ".read": "data.val() === null || (data.child('publicAccess').val() === true && auth !== null) || root.child('owners').child($dataType).child($dataKey).child(auth.uid).exists() || (data.child('connectionAccess/read').val() === true && root.child('connectionDataLists').child(data.child('connectionAccess/connectionType').val()).child(data.child('connectionAccess/connectionKey').val()).child(data.child('connectionAccess/uidDataType').val()).child(auth.uid).exists())",
+          ".write": "data.child('readOnly').val() !== true && root.child('owners').child($dataType).child($dataKey).child(auth.uid).exists() || (data.child('connectionAccess/write').val() === true && root.child('connectionDataLists').child(data.child('connectionAccess/connectionType').val()).child(data.child('connectionAccess/connectionKey').val()).child(data.child('connectionAccess/uidDataType').val()).child(auth.uid).exists())"
+        }
+      }
+    },
+    "owners": {
+      "$dataType": {
+        "$dataKey": {
+          ".read": "data.val() === null || data.child(auth.uid).exists()",
+          ".write": "!data.exists() || newData.child(auth.uid).exists()",
+          "$uid": {
+            ".read": "auth.uid === $uid",
+            ".write": "auth.uid === $uid"
+          }
+        }
+      }
+    },
+    "connectionDataLists": {
+      "$dataType": {
+        ".read": "root.child('publicDataType').child($dataType).val() === true",
+        ".write": "root.child('publicDataType').child($dataType).val() === true && auth !== null",
+        "$dataKey": {
+          ".read": "data.val() === null || (root.child('data').child($dataType).child($dataKey).child('publicAccess').val() === true && auth !== null) || root.child('owners').child($dataType).child($dataKey).child(auth.uid).exists() || (root.child('data').child($dataType).child($dataKey).child('connectionAccess/read').val() === true && root.child('connectionDataLists').child(root.child('data').child($dataType).child($dataKey).child('connectionAccess/connectionType').val()).child(root.child('data').child($dataType).child($dataKey).child('connectionAccess/connectionKey').val()).child(root.child('data').child($dataType).child($dataKey).child('connectionAccess/uidDataType').val()).child(auth.uid).exists())",
+          ".write": "root.child('owners').child($dataType).child($dataKey).child(auth.uid).exists() || (root.child('data').child($dataType).child($dataKey).child('connectionAccess/write').val() === true && root.child('connectionDataLists').child(root.child('data').child($dataType).child($dataKey).child('connectionAccess/connectionType').val()).child(root.child('data').child($dataType).child($dataKey).child('connectionAccess/connectionKey').val()).child(root.child('data').child($dataType).child($dataKey).child('connectionAccess/uidDataType').val()).child(auth.uid).exists())",
+          "$connectionType": {
+            ".read": "root.child('publicDataType').child($connectionType).val() === true",
+            ".write": "root.child('publicDataType').child($connectionType).val() === true && auth !== null",
+            "$connectionKey": {
+              ".read": true,
+              ".write": "(root.child('data').child($dataType).child($dataKey).child('publicAccess').val() === true && auth !== null) || root.child('owners').child($connectionType).child($connectionKey).child(auth.uid).exists() || (root.child('data').child($connectionType).child($connectionKey).child('connectionAccess/write').val() === true && root.child('connectionDataLists').child(root.child('data').child($connectionType).child($connectionKey).child('connectionAccess/connectionType').val()).child(root.child('data').child($connectionType).child($connectionKey).child('connectionAccess/connectionKey').val()).child(root.child('data').child($connectionType).child($connectionKey).child('connectionAccess/uidDataType').val()).child(auth.uid).exists())",
+              ".validate": "newData.isNumber()"
+            }
+          }
+        }
+      }
+    }
+  }
+}

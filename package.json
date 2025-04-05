@@ -1,0 +1,54 @@
+{
+  "name": "tetractys",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "prettier": {
+    "printWidth": 120
+  },
+  "dependencies": {
+    "@fullstory/browser": "^2.0.6",
+    "@langchain/anthropic": "^0.3.15",
+    "@langchain/community": "^0.3.35",
+    "@langchain/core": "^0.3.42",
+    "@langchain/openai": "^0.4.4",
+    "@remixicon/react": "^4.6.0",
+    "@tiptap/extension-character-count": "^2.11.5",
+    "@tiptap/extension-highlight": "^2.11.5",
+    "@tiptap/extension-task-item": "^2.11.5",
+    "@tiptap/extension-task-list": "^2.11.5",
+    "@tiptap/react": "^2.11.5",
+    "@tiptap/starter-kit": "^2.11.5",
+    "animate.css": "^4.1.1",
+    "firebase": "^11.3.1",
+    "firebase-admin": "^13.1.0",
+    "next": "15.1.7",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-markdown": "^10.1.0",
+    "react-textarea-autosize": "^8.5.8",
+    "react-toastify": "^11.0.5",
+    "remixicon": "^4.6.0",
+    "stripe": "^17.7.0",
+    "uuid": "^11.1.0"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@svgr/webpack": "^8.1.0",
+    "@tailwindcss/postcss": "^4.0.7",
+    "@tailwindcss/typography": "^0.5.16",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "15.1.7",
+    "postcss": "^8",
+    "tailwindcss": "^4.0.7",
+    "typescript": "^5"
+  }
+}
