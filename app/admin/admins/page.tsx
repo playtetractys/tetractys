@@ -9,6 +9,7 @@ import { onValue, remove, set } from "@/soil/services/firebase";
 
 export default function Admin() {
   const [admins, setAdmins] = useState<Record<string, boolean> | null>();
+
   useEffect(() => {
     onValue("admins", setAdmins);
   }, []);

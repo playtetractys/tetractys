@@ -29,10 +29,7 @@ export async function POST(request: Request) {
       {
         price_data: {
           currency: "usd",
-          product_data: {
-            name: "Tetractys Credits",
-            description: "Fully refundable credits for Tetractys",
-          },
+          product_data: { name: "Tetractys Credits" },
           unit_amount: cents,
         },
         quantity: 1,
@@ -40,10 +37,7 @@ export async function POST(request: Request) {
       {
         price_data: {
           currency: "usd",
-          product_data: {
-            name: "Platform Fee",
-            description: "This helps cover the cost of maintaining and growing the platform",
-          },
+          product_data: { name: "Platform Fee" },
           unit_amount: Math.max(Math.round(cents * 0.04), 50),
         },
         quantity: 1,
