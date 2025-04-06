@@ -51,7 +51,7 @@ export function Auth() {
         await createData({
           dataType: "user",
           dataKey: usr.uid,
-          data: { email },
+          data: { email, createdAt: Date.now() },
           owners: [usr.uid],
         });
 
