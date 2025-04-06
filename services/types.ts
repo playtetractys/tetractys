@@ -2,11 +2,11 @@ import { CURRENCIES } from "@/services/constants";
 
 export type Currency = (typeof CURRENCIES)[number];
 
-export type User = {
+export type UserData = {
   email: string;
-  currentCollection?: string;
-  /** Keyed by `{tetractysKey}` */
-  tetractysHistory?: Record<string, string>;
+  createdAt: number;
+  updatedAt?: number;
+  inviteCode?: string | null;
 };
 
 /** Keyed by `{username}` */
@@ -40,17 +40,14 @@ export type StoryPage = {
 
 export type StoryStepButton = {
   text: string;
-  href: string;
-  useHref: boolean;
-  storyPageKey: string;
-  storyStepKey: string;
+  primary?: boolean;
 };
 
 export type StoryStep = {
   text: string;
   audio?: string | null;
   /** Keyed by `{actionKey}` */
-  buttons?: Record<string, StoryStepButton>;
+  buttons: Record<string, StoryStepButton>;
 };
 
 export type ImageData = {
@@ -138,3 +135,5 @@ export type UserState = {
   aiCredits: number;
   energy: number;
 };
+
+export type WaitListData = Record<string, { createdAt: number; successfulInvites: number }>;

@@ -24,7 +24,7 @@
 }
 
 :root {
-  --background: #0a0a0a;
+  --background: #000000;
   --foreground: #ededed;
   caret-color: var(--foreground);
 }
@@ -41,6 +41,10 @@ body {
 
 .btn {
   @apply px-4 py-2 text-center rounded-lg border text-white border-white/30 hover:border-white hover:bg-white/10 transition-colors duration-400;
+}
+
+.btn-primary {
+  @apply bg-white text-black;
 }
 
 .btn-grow {

@@ -55,12 +55,12 @@ export function StepAudio({ audio, handleAutoPlay = false }: { audio: string; ha
   return (
     <button
       onClick={toggleAudio}
-      className="rounded-full border-purple-400/30 hover:border-purple-400 border-1 hover:bg-purple-400/10 transition-colors"
+      className="rounded-full border-white/30 hover:border-white border-1 hover:bg-white/10 transition-colors"
       aria-label={isPlaying ? "Pause narration" : "Play narration"}
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        className="w-full h-full text-purple-400"
+        className="w-full h-full text-white"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"

@@ -1,6 +1,7 @@
 import { getToken } from "@/soil/services/auth";
 import { Tetractys, CreditsRequest, QandA } from "./types";
 import { getTetractysMessages } from "./tetractys";
+import { INVITE_CODE_KEY } from "./constants";
 
 async function authFetch(url: string, options: RequestInit) {
   const token = await getToken();
@@ -58,4 +59,13 @@ export async function getCreditSessionUrl(amount: number, redirectPathname: stri
 
 export function getInitialCredits() {
   return authFetch("/api/stripe/credits/initial", { method: "GET" });
+}
+
+export async function addToWaitlist(email: string, inviteCodeLs: string) {
+  const data = await authFetch("/api/waitlist", {
+    method: "POST",
+    body: JSON.stringify({ email, [INVITE_CODE_KEY]: inviteCodeLs }),
+  });
+
+  return data;
 }

@@ -1,5 +1,7 @@
 import type { QandA } from "./types";
 
+export const INVITE_CODE_KEY = "inviteCode";
+
 export const TEMPLATE_KEY = "story";
 
 export const TETRACTYS_INPUT_ID = "tetractys-input";

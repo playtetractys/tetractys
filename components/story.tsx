@@ -7,6 +7,8 @@ import { StoryStep } from "@/components/story-step";
 
 // Helpers
 import { useAnimatedTransitionClasses } from "@/hooks/useAnimatedTransitionClasses";
+
+// Types
 import type { StoryPage, StoryStep as StoryStepType } from "@/services/types";
 
 export function Story({
@@ -28,7 +30,7 @@ export function Story({
       <Image
         src={storyPageToUse.image || "/adventure/the_sea.jpg"}
         alt={storyPageToUse.imageAlt || "mysterious background"}
-        className={`aspect-video object-cover border-purple-400/30 border-1 shadow-black shadow-2xl rounded-lg mb-4 md:mb-10 transition-all animate__animated ${storyPageTransitionClasses}`}
+        className={`object-cover md:rounded-lg mb-4 md:mb-10 transition-all animate__animated ${storyPageTransitionClasses}`}
         width={600}
         height={600}
       />
