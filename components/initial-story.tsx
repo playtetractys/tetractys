@@ -87,10 +87,13 @@ export function InitialStory() {
     setStoryStep(STORY_STEPS[newStory.storyStepKey]);
   }, [storyIndex]);
 
-  const handleAction = useCallback((actionKey: string) => {
-    if (actionKey === "waitlist") setIsModalOpen(true);
-    else setStoryIndex((p) => (actionKey === "next" ? p + 1 : p - 1));
-  }, []);
+  const handleAction = useCallback(
+    (actionKey: string) => {
+      if (actionKey === "waitlist") setIsModalOpen(true);
+      else setStoryIndex((p) => (actionKey === "next" ? p + 1 : p - 1));
+    },
+    [setIsModalOpen]
+  );
 
   return (
     <>

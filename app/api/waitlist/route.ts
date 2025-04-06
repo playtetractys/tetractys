@@ -4,7 +4,6 @@ import { NextResponse } from "next/server";
 import { verifyAuth } from "@/services/verify-auth";
 import { initializeBackendApp, set, transactionWithCb } from "@/soil/services/firebase-admin";
 import { WaitListData, UserData } from "@/services/types";
-import { INVITE_CODE_KEY } from "@/services/constants";
 
 initializeBackendApp();
 
