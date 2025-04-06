@@ -98,7 +98,7 @@ export function WaitList() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="your.email@example.com"
-                  className="flex-grow p-2.5 border border-zinc-600 rounded bg-zinc-800 text-zinc-100 placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-red-500"
+                  className="flex-grow p-2.5 border border-zinc-600 rounded bg-zinc-800 text-zinc-100 placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-white"
                   required
                   disabled={isLoading}
                 />
