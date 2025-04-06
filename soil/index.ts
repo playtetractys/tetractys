@@ -1,6 +1,6 @@
 import type { Stripe } from "stripe";
 import type {
-  User,
+  UserData,
   QandA,
   UserState,
   StoryStep,
@@ -28,7 +28,7 @@ export type SoilDatabase = {
   };
 
   /** Keyed by `{uid}` */
-  user: User;
+  user: UserData;
 
   /** Keyed by `{tetractysKey}` */
   openAiRequest: {
