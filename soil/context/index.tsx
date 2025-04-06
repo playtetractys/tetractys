@@ -1,4 +1,6 @@
 "use client";
+
+import { useParams } from "next/navigation";
 import { createContext, ReactNode, useCallback, useContext, useEffect, useMemo, useState } from "react";
 
 // Services
@@ -15,25 +17,30 @@ import { generateDbKey, parseDbKey } from "@/soil/services/paths";
 import type { FirebaseOptions } from "firebase/app";
 import type { User } from "firebase/auth";
 import type { Data, StatefulData } from "@/soil/services/types";
-import { useValue } from "../hooks/useValue";
-import { Credits } from "@/services/types";
-import { useParams } from "next/navigation";
+import type { UserState } from "@/services/types";
 
 type BaseSoilContext = {
   initiallyLoading: boolean;
   isAdmin: Nullable<boolean>;
   user: Maybe<User>;
   userData: StatefulData<"user">;
+  userState: StatefulData<"userState">;
+  updateUserState: (userState: UserState) => void;
   userUid: Maybe<string>;
   didFetchSettings: boolean;
   settings: Record<string, string>;
-  credits: Maybe<Nullable<Credits>>;
   isCreditsModalOpen: boolean;
   setIsCreditsModalOpen: (isOpen: boolean) => void;
   tetractysKey: Maybe<string>;
   tetractyses: (Data<"tetractys"> & { key: string })[];
   tetractysData: Record<string, StatefulData<"tetractys">>;
   tetractys: StatefulData<"tetractys">;
+  galaxy: StatefulData<"galaxy">;
+  sector: StatefulData<"sector">;
+  star: StatefulData<"star">;
+  planet: StatefulData<"planet">;
+  storyPage: StatefulData<"storyPage">;
+  storyStep: StatefulData<"storyStep">;
 };
 
 const SoilContext = createContext<Maybe<BaseSoilContext>>(undefined);
@@ -85,8 +92,24 @@ export const SoilContextProviderComponent = ({ children, firebaseOptions }: TPro
   }, [user?.uid]);
 
   const userData = useDataKeyValue("user", user?.uid);
-  const credits = useValue<Credits>(user?.uid && !user?.isAnonymous ? `credits/${user?.uid}` : undefined);
+  const userState = useDataKeyValue("userState", user?.uid);
+  const updateUserState = useCallback(
+    (userState: Partial<UserState>) => {
+      if (!user?.uid) throw new Error("User not found");
+      return updateData({ dataType: "userState", dataKey: user.uid, data: userState });
+    },
+    [user?.uid]
+  );
 
+  const galaxy = useDataKeyValue("galaxy", userState ? userState.galaxyKey || "DEFAULT" : null);
+  const sector = useDataKeyValue(
+    "sector",
+    userState ? userState.sectorKey || galaxy?.defaultSectorKey || "DEFAULT" : null
+  );
+  const star = useDataKeyValue("star", userState?.starKey);
+  const planet = useDataKeyValue("planet", userState?.planetKey);
+  const storyPage = useDataKeyValue("storyPage", userState?.storyPageKey);
+  const storyStep = useDataKeyValue("storyStep", userState?.storyStepKey);
   const { data: settingsData, fetched: didFetchSettings } = useUserData({
     uid: user?.uid,
     dataType: "soilUserSettings",
@@ -155,35 +178,49 @@ export const SoilContextProviderComponent = ({ children, firebaseOptions }: TPro
       user,
       getUserUid,
       userData,
+      userState,
+      updateUserState,
       userUid: user?.uid,
       isAdmin,
       didFetchSettings,
       settings,
       setSetting,
-      credits,
       isCreditsModalOpen,
       setIsCreditsModalOpen,
       tetractyses,
       tetractysData,
       tetractysKey,
       tetractys,
+      galaxy,
+      sector,
+      star,
+      planet,
+      storyPage,
+      storyStep,
     }),
     [
       initiallyLoading,
       user,
       getUserUid,
       userData,
+      userState,
+      updateUserState,
       user?.uid,
       isAdmin,
       didFetchSettings,
       settings,
       setSetting,
-      credits,
       isCreditsModalOpen,
       tetractyses,
       tetractysData,
       tetractysKey,
       tetractys,
+      galaxy,
+      sector,
+      star,
+      planet,
+      storyPage,
+      storyStep,
     ]
   );
 

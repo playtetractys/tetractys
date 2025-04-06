@@ -7,6 +7,9 @@ import { signIn, signUp, forgotPassword } from "@/soil/services/auth";
 import { createData } from "@/soil/services/client-data";
 import { getInitialCredits } from "@/services/api";
 
+// Helpers
+import { DEFAULT_LOCATION } from "@/services/constants";
+
 export function Auth() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -52,6 +55,19 @@ export function Auth() {
           owners: [usr.uid],
         });
 
+        await createData({
+          dataType: "userState",
+          dataKey: usr.uid,
+          data: {
+            galaxyKey: DEFAULT_LOCATION,
+            sectorKey: DEFAULT_LOCATION,
+            starKey: DEFAULT_LOCATION,
+            planetKey: DEFAULT_LOCATION,
+            aiCredits: 100,
+            energy: 100,
+          },
+          owners: [usr.uid],
+        });
         await getInitialCredits();
 
         setStatus("idle");

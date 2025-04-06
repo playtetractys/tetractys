@@ -5,9 +5,12 @@ export type Currency = (typeof CURRENCIES)[number];
 export type User = {
   email: string;
   currentCollection?: string;
-  // Keyed by {tetractysKey}
+  /** Keyed by `{tetractysKey}` */
   tetractysHistory?: Record<string, string>;
 };
+
+/** Keyed by `{username}` */
+export type Profile = {};
 
 export type QandA = {
   question: string;
@@ -23,50 +26,115 @@ export type QandAProps = QandA & {
   size?: "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl";
 };
 
-export type TetractysPoints = {
-  one: QandA;
-  two?: QandA;
-  three?: QandA;
-  four?: QandA;
-  five?: QandA;
-  six?: QandA;
-  seven?: QandA;
-  eight?: QandA;
-  nine?: QandA;
-  ten?: QandA;
-};
-
-/** Keyed by `{pushKey}` */
-export type Tetractys = {
-  points?: TetractysPoints;
-  result?: string;
-};
-
 export type CreditsRequest = {
   amount: number;
   redirectPathname: string;
 };
 
-export type Credits = {
-  amount: number;
+export type StoryPage = {
+  image: string;
+  imageAlt: string;
+  photoCredit?: string;
+  photoCreditLink?: string;
 };
 
-export type ProductOrService = {
+export type StoryStepButton = {
+  text: string;
+  href: string;
+  useHref: boolean;
+  storyPageKey: string;
+  storyStepKey: string;
+};
+
+export type StoryStep = {
+  text: string;
+  audio?: string | null;
+  /** Keyed by `{actionKey}` */
+  buttons?: Record<string, StoryStepButton>;
+};
+
+export type ImageData = {
+  image: string;
+  imageAlt: string;
+  photoCredit?: string;
+  photoCreditLink?: string;
+};
+
+export type LocationData = {
   name: string;
-  description: string;
-  prices: Partial<Record<Currency, number>>;
+  primaryImageDataKey: string;
 };
 
-export type UserProduct = ProductOrService;
+export type Tile = {};
 
-export type UserService = ProductOrService;
-
-export type UserRequest = {
-  ttl: number;
+export type Galaxy = LocationData & {
+  defaultSectorKey: string;
+  tiles: Record<string, Tile>;
 };
 
-export type UserOffering = {
-  ttl: number;
+export type Sector = LocationData & {
+  tileKey: string;
+  defaultStarKey: string;
+  /** timestamp of when the jump point was built */
+  jumpPointBuiltAt?: number;
+  /** username of the use who built the jump point */
+  jumpPointBuiltBy?: string;
 };
 
-export type OfferingType = "product" | "service";
+export type BlackHole = {
+  primaryImageDataKey: string;
+};
+
+export type Star = LocationData & {
+  /** timestamp of when the dyson sphere was built */
+  dysonSphereBuiltAt?: number;
+  /** username of the use who built the dyson sphere */
+  dysonSphereBuiltBy?: string;
+};
+
+export type Planet = LocationData & {
+  orbitDistance: number;
+  orbitSpeed: number;
+  orbitDirection: number;
+  /** timestamp of when the planet was built */
+  planetBuiltAt?: number;
+  /** username of the use who built the planet */
+  planetBuiltBy?: string;
+};
+
+/** Farcasters are built by users so they can travel to planets accross the galaxy whenever they want */
+export type Farcaster = {
+  primaryImageDataKey: string;
+};
+
+export type TetractysAiPoint = {
+  prompt: string;
+  aiCredits: number;
+};
+
+/** A Tetractys is created at most once a day.
+ * Then, then a cron job gets each
+ * Keyed by `{uid}:~~:{YYYY-MM-DD}` */
+export type Tetractys = {
+  overallStrategy: TetractysAiPoint;
+  militaryStrategy: TetractysAiPoint;
+  economicStrategy: TetractysAiPoint;
+  diplomaticStrategy: TetractysAiPoint;
+  explorationStrategy: TetractysAiPoint;
+  researchStrategy: TetractysAiPoint;
+  developmentStrategy: TetractysAiPoint;
+  eight: TetractysAiPoint;
+  nine: TetractysAiPoint;
+  ten: TetractysAiPoint;
+};
+
+export type UserState = {
+  galaxyKey: string;
+  sectorKey: string;
+  starKey?: string | null;
+  planetKey?: string | null;
+  storyPageKey?: string | null;
+  storyStepKey?: string | null;
+  aiCredits: number;
+  energy: number;
+};

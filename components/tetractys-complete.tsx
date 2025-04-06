@@ -16,13 +16,13 @@ export function TetractysComplete({ tetractys }: { tetractys: Data<"tetractys"> 
     return new Date(tetractys.createdAt).toLocaleDateString();
   }, [tetractys]);
 
-  if (!tetractys?.result) return null;
+  if (!tetractys?.ten) return null;
 
   return (
     <div className="grow flex flex-col justify-center items-center gap-y-8 py-20">
       <h1 className="text-2xl font-bold animate__animated animate__zoomIn">{tetractysTitle}</h1>
       <div className="max-w-2xl text-lg font-serif animate__animated animate__zoomIn rounded-lg p-2 bg-zinc-800 leading-snug">
-        <Editor content={getContentFromText(tetractys.result)} />
+        <Editor content={getContentFromText(tetractys.ten.prompt)} />
       </div>
     </div>
   );

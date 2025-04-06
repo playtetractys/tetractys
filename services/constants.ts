@@ -76,3 +76,5 @@ export const CURRENCY_SYMBOLS = {
   mxn: "$",
   rub: "₽",
 } as const;
+
+export const DEFAULT_LOCATION = "DEFAULT_LOCATION";

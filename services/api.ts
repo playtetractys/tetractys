@@ -44,7 +44,7 @@ export async function createResult(tetractysKey: string, tetractys: Tetractys) {
     body: JSON.stringify(getTetractysMessages(tetractys)),
   });
 
-  return data.result as Tetractys["result"];
+  return data.result as string;
 }
 
 export async function getCreditSessionUrl(amount: number, redirectPathname: string) {

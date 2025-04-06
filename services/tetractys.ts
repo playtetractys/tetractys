@@ -1,4 +1,4 @@
-import { TETRACTYS_INPUT_ID } from "./constants";
+import { TETRACTYS_INPUT_ID, INITIAL_QUESTION } from "./constants";
 import type { Tetractys } from "@/services/types";
 
 export function handleTetractysInputFocus() {
@@ -10,30 +10,24 @@ export function getTetractysMessages(tetractys: Tetractys) {
   const tMessages: [string, string][] = [];
 
   // Add past Q&As from points in order
-  if (tetractys?.points) {
-    const orderedPoints = [
-      tetractys.points.one,
-      tetractys.points.two,
-      tetractys.points.three,
-      tetractys.points.four,
-      tetractys.points.five,
-      tetractys.points.six,
-      tetractys.points.seven,
-      tetractys.points.eight,
-      tetractys.points.nine,
-      tetractys.points.ten,
-    ].filter((point): point is NonNullable<typeof point> => point !== undefined);
+  const orderedPoints = [
+    tetractys.overallStrategy,
+    tetractys.militaryStrategy,
+    tetractys.economicStrategy,
+    tetractys.diplomaticStrategy,
+    tetractys.explorationStrategy,
+    tetractys.researchStrategy,
+    tetractys.developmentStrategy,
+    tetractys.eight,
+    tetractys.nine,
+    tetractys.ten,
+  ].filter((point): point is NonNullable<typeof point> => point !== undefined);
 
-    orderedPoints.forEach((point) => {
-      if (point.question && point.answer) {
-        tMessages.push(["system", point.question], ["user", point.answer]);
-      }
-    });
-  }
+  orderedPoints.forEach((point) => {
+    tMessages.push(["system", point.prompt]);
+  });
 
-  if (tetractys?.result) {
-    tMessages.push(["system", tetractys.result]);
-  }
+  tMessages.push(["system", INITIAL_QUESTION.question]);
 
   return tMessages;
 }

@@ -5,8 +5,8 @@ const authIsAdmin = "root.child('admins').child(auth.uid).val() === true";
 const authUidIsUid = "auth.uid === $uid";
 const authNotNull = "auth !== null";
 const isNumber = "newData.isNumber()";
-const authIsDataOwner = (dataType: string) =>
-  `root.child('owners').child(${dataType}).child($dataKey).child(auth.uid).exists()`;
+const authIsDataOwner = (dataType: string, dataKey: string = "$dataKey") =>
+  `root.child('owners').child(${dataType}).child(${dataKey}).child(auth.uid).exists()`;
 const authIsConnectingDataOwner =
   "root.child('owners').child($connectionType).child($connectionKey).child(auth.uid).exists()";
 
@@ -18,22 +18,6 @@ const readConnectionAccessBoolean = "data.child('connectionAccess/read').val() =
 const writeConnectionAccessBoolean = "data.child('connectionAccess/write').val() === true";
 const connectionAccess = `root.child('connectionDataLists').child(${connectionAccessType}).child(${connectionAccessKey}).child(${uidDataType}).child(auth.uid).exists()`;
 const userIsAppUser = "root.child('data/appUser').child(auth.uid).exists()";
-
-// Root Connection Access
-const rootDataPath = (prefix: string) => `root.child('data').child($${prefix}Type).child($${prefix}Key)`;
-const rootConnectionAccessType = (prefix: string) =>
-  `${rootDataPath(prefix)}.child('connectionAccess/connectionType').val()`;
-const rootConnectionAccessKey = (prefix: string) =>
-  `${rootDataPath(prefix)}.child('connectionAccess/connectionKey').val()`;
-const rootUidDataType = (prefix: string) => `${rootDataPath(prefix)}.child('connectionAccess/uidDataType').val()`;
-const rootReadConnectionAccessBoolean = (prefix: string) =>
-  `${rootDataPath(prefix)}.child('connectionAccess/read').val() === true`;
-const rootWriteConnectionAccessBoolean = (prefix: string) =>
-  `${rootDataPath(prefix)}.child('connectionAccess/write').val() === true`;
-const rootConnectionAccess = (prefix: string) =>
-  `root.child('connectionDataLists').child(${rootConnectionAccessType(prefix)}).child(${rootConnectionAccessKey(
-    prefix
-  )}).child(${rootUidDataType(prefix)}).child(auth.uid).exists()`;
 
 const rootData = "root.child('data').child($dataType).child($dataKey)";
 
@@ -50,6 +34,9 @@ const dataWriteRules = (dataType: string) =>
 
 const isPublicDataType = (dataType: string) => `root.child('publicDataType').child(${dataType}).val() === true`;
 const isPublicDataTypeAndAuth = (dataType: string) => `${isPublicDataType(dataType)} && ${authNotNull}`;
+
+const isUserWOwerPublicDataType = (dataType: string) =>
+  `root.child('publicDataType').child(${dataType}).val() === true`;
 
 const rules = {
   ".read": authIsAdmin,
@@ -92,11 +79,56 @@ const rules = {
     },
   },
   data: {
-    $dataType: {
-      ".read": isPublicDataType("$dataType"),
-      $dataKey: {
-        ".read": dataReadRules("$dataType"),
-        ".write": `data.child('readOnly').val() !== true && ${dataWriteRules("$dataType")}`,
+    profile: {
+      $uid: {
+        ".read": authUidIsUid,
+        ".write": authUidIsUid,
+      },
+    },
+    userState: {
+      $uid: {
+        ".read": authUidIsUid,
+      },
+    },
+    galaxy: {
+      $galaxyKey: {
+        ".read": `root.child('userState/galaxyKey').val() === $galaxyKey`,
+      },
+    },
+    sector: {
+      $sectorKey: {
+        ".read": `root.child('userState/sectorKey').val() === $sectorKey`,
+      },
+    },
+    star: {
+      $starKey: {
+        ".read": `root.child('userState/starKey').val() === $starKey`,
+      },
+    },
+    planet: {
+      $planetKey: {
+        ".read": `root.child('userState/planetKey').val() === $planetKey`,
+      },
+    },
+    tetractys: {
+      $tetractysKey: {
+        ".read": authUidIsUid,
+      },
+    },
+    admiral: {
+      $admiralKey: {
+        ".read": authNotNull,
+        ".write": authIsDataOwner("admiral", "$admiralKey"),
+      },
+    },
+    admiralState: {
+      $admiralStateKey: {
+        ".read": authIsDataOwner("admiralState", "$admiralStateKey"),
+      },
+    },
+    ship: {
+      $shipKey: {
+        ".read": authIsDataOwner("ship", "$shipKey"),
       },
     },
   },
@@ -115,22 +147,15 @@ const rules = {
   connectionDataLists: {
     $dataType: {
       ".read": isPublicDataType("$dataType"),
-      ".write": isPublicDataTypeAndAuth("$dataType"),
       $dataKey: {
         ".read": `data.val() === null || (${rootDataPublicAccess} && ${authNotNull}) || ${authIsDataOwner(
           "$dataType"
-        )} || (${rootReadConnectionAccessBoolean("data")} && ${rootConnectionAccess("data")})`,
-        ".write": `${authIsDataOwner("$dataType")} || (${rootWriteConnectionAccessBoolean(
-          "data"
-        )} && ${rootConnectionAccess("data")})`,
+        )}`,
         $connectionType: {
           ".read": isPublicDataType("$connectionType"),
           ".write": isPublicDataTypeAndAuth("$connectionType"),
           $connectionKey: {
             ".read": true,
-            ".write": `(${rootDataPublicAccess} && ${authNotNull}) || ${authIsConnectingDataOwner} || (${rootWriteConnectionAccessBoolean(
-              "connection"
-            )} && ${rootConnectionAccess("connection")})`,
             ".validate": isNumber,
           },
         },

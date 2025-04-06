@@ -6,10 +6,11 @@ import { ChatPromptTemplate } from "@langchain/core/prompts";
 
 // Helpers
 import { z } from "zod";
-import { NUMBER_MAP, SYSTEM_PROMPT } from "@/services/constants";
+import { SYSTEM_PROMPT } from "@/services/constants";
 
 // Types
-import type { Credits, QandA, TetractysPoints } from "./types";
+import type { QandA, UserState } from "./types";
+import { PATHS } from "@/soil/services/paths";
 
 const QUOTE_DESCRIPTION = "A quote from some wise person.";
 const QUOTE_AUTHOR_DESCRIPTION = "The author of the quote.";
@@ -113,18 +114,12 @@ export async function saveOpenAiRequest(request: Request, messages: [string, str
   }
 }
 
-export function pointsToString(points: TetractysPoints) {
-  return Object.entries(points)
-    .map(([key, value]) => `${NUMBER_MAP[key as keyof typeof NUMBER_MAP]}. ${value.question}`)
-    .join("\n");
-}
-
 export async function consumeCredit(uid: string) {
-  const creditsPath = `credits/${uid}`;
-  const credits = await get<Credits>(creditsPath);
-  if (!credits?.amount || credits.amount <= 0) return new Error("Insufficient credits");
+  const creditsPath = PATHS.dataKeyField("userState", uid, "aiCredits");
+  const credits = await get<UserState["aiCredits"]>(creditsPath);
+  if (!credits || credits <= 0) return new Error("Insufficient credits");
 
-  await transactionWithCb<Credits>(creditsPath, (currentCredits) => {
-    return { amount: (currentCredits?.amount ?? 0) - 1 };
+  await transactionWithCb<UserState["aiCredits"]>(creditsPath, (currentCredits) => {
+    return (currentCredits ?? 0) - 1;
   });
 }

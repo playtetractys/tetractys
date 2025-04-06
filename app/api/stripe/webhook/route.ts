@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import Stripe from "stripe";
 import { set, initializeBackendApp, transactionWithCb } from "@/soil/services/firebase-admin";
 import { createData, getDataKeyValue, updateData } from "@/soil/services/server-data";
-import { Credits } from "@/services/types";
+import type { UserState } from "@/services/types";
 
 initializeBackendApp();
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
@@ -45,8 +45,8 @@ export async function POST(request: Request) {
 
       const credits = Number(event.data.object.metadata?.credits);
       if (credits) {
-        await transactionWithCb<Credits>(`credits/${uid}`, (currentCredits) => {
-          return { amount: (currentCredits?.amount ?? 0) + credits };
+        await transactionWithCb<UserState["aiCredits"]>(`userState/${uid}/aiCredits`, (currentCredits) => {
+          return (currentCredits ?? 0) + credits;
         });
       }
     } else if (

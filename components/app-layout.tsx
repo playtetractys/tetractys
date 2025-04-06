@@ -15,7 +15,7 @@ import { Drawer } from "@/components/drawer";
 import { CreditsModal } from "@/components/credits-modal";
 
 export function AppLayout({ children }: { children: React.ReactNode }) {
-  const { userData, initiallyLoading, credits, isCreditsModalOpen, setIsCreditsModalOpen } = useSoilContext();
+  const { userData, initiallyLoading, userState, isCreditsModalOpen, setIsCreditsModalOpen } = useSoilContext();
 
   useFullStory();
   const pathname = usePathname();
@@ -73,10 +73,10 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
             onClick={() => setIsCreditsModalOpen(true)}
             style={{ top: 1 }}
             className={`relative flex items-center gap-2 ${
-              (credits?.amount ?? 0) <= 0 ? "btn-ghost-red" : "btn-ghost"
+              (userState?.aiCredits ?? 0) <= 0 ? "btn-ghost-red" : "btn-ghost"
             }`}
           >
-            {credits?.amount ?? 0}
+            {userState?.aiCredits ?? 0}
             <Image src="/tetractys.png" alt="Buy credits" priority width={15} height={15} className="invert" />
           </button>
           <Link

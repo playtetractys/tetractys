@@ -13,7 +13,7 @@ type CreditsModalProps = {
 export function CreditsModal({ isOpen, onClose, pathname }: CreditsModalProps) {
   const [customAmount, setCustomAmount] = useState("");
   const [error, setError] = useState("");
-  const { credits } = useSoilContext();
+  const { userState } = useSoilContext();
 
   if (!isOpen) return null;
 
@@ -44,7 +44,7 @@ export function CreditsModal({ isOpen, onClose, pathname }: CreditsModalProps) {
           </button>
         </div>
 
-        <h3 className="text-lg text-zinc-50 mb-2">Current credits: {credits?.amount ?? 0}</h3>
+        <h3 className="text-lg text-zinc-50 mb-2">Current credits: {userState?.aiCredits ?? 0}</h3>
 
         <p className="text-sm text-zinc-400 mb-6">
           Each dollar is worth 10 Tetractys Credits and each Tetractys costs 1 credit.

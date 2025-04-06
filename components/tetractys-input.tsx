@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useCallback, useMemo } from "react";
+import { useEffect, useState, useCallback } from "react";
 
 // Services
 import { useTetractysContext } from "@/contexts/tetractysContext";
@@ -11,11 +11,9 @@ import { TETRACTYS_INPUT_ID, TETRACTYS_FORM_ID } from "@/services/constants";
 
 // Components
 import TextareaAutosize from "react-textarea-autosize";
-import { Spinner } from "@/components/spinner";
-import { TetractysInputActions } from "@/components/tetractys-input-actions";
 
 // Types
-import type { QandAProps, TetractysPoints } from "@/services/types";
+import type { QandAProps } from "@/services/types";
 
 export function TetractysInput({
   currentQandA,
@@ -26,7 +24,7 @@ export function TetractysInput({
   loading: boolean;
   loadingSuggestion: boolean;
 }) {
-  const { suggestedAnswer, setSuggestedAnswer, tetractysPoint } = useTetractysContext();
+  const { suggestedAnswer, setSuggestedAnswer } = useTetractysContext();
 
   const [question, setQuestion] = useState("");
   const [quote, setQuote] = useState("");
@@ -39,12 +37,6 @@ export function TetractysInput({
       setQuoteAuthor(currentQandA.quoteAuthor);
     }
   }, [currentQandA]);
-
-  const [currentPoint, setCurrentPoint] = useState<keyof TetractysPoints | null>(null);
-  useEffect(() => {
-    if (tetractysPoint) setCurrentPoint(tetractysPoint);
-  }, [tetractysPoint]);
-
   const [answer, setAnswer] = useState("");
 
   useEffect(() => {
@@ -70,11 +62,6 @@ export function TetractysInput({
     [currentQandA]
   );
 
-  const isPreviousPoint = useMemo(
-    () => tetractysPoint && currentPoint !== tetractysPoint,
-    [tetractysPoint, currentPoint]
-  );
-
   if (!currentQandA) return null;
 
   return (
@@ -92,23 +79,7 @@ export function TetractysInput({
             tabIndex={0}
             placeholder={currentQandA.placeholder}
             className={`w-full text-${currentQandA.size} input`}
-            disabled={loading || loadingSuggestion || isPreviousPoint}
-          />
-
-          {!isPreviousPoint && (
-            <button type="submit" className="btn flex items-center justify-center gap-2" disabled={loading}>
-              {loading && <Spinner />} {currentQandA.btnText}
-            </button>
-          )}
-
-          <TetractysInputActions
-            currentPoint={currentPoint}
-            setCurrentPoint={setCurrentPoint}
-            setQuestion={setQuestion}
-            setAnswer={setAnswer}
-            setQuote={setQuote}
-            setQuoteAuthor={setQuoteAuthor}
-            loadingSuggestion={loadingSuggestion}
+            disabled={loading || loadingSuggestion}
           />
         </div>
       </form>

@@ -19,7 +19,7 @@ export function Drawer({
   setIsDrawerOpen: (isDrawerOpen: boolean) => void;
   pathname: string;
 }) {
-  const { credits, setIsCreditsModalOpen } = useSoilContext();
+  const { userState, setIsCreditsModalOpen } = useSoilContext();
 
   return (
     <>
@@ -73,10 +73,10 @@ export function Drawer({
               }}
               style={{ top: 1 }}
               className={`w-full relative flex justify-center items-center gap-2 ${
-                (credits?.amount ?? 0) <= 0 ? "btn-ghost-red" : "btn-ghost"
+                (userState?.aiCredits ?? 0) <= 0 ? "btn-ghost-red" : "btn-ghost"
               }`}
             >
-              You have {credits?.amount ?? 0}
+              You have {userState?.aiCredits ?? 0}
               <Image src="/tetractys.png" alt="Buy credits" priority width={15} height={15} className="invert" />{" "}
               Credits
             </button>

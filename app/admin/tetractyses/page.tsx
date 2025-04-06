@@ -19,7 +19,7 @@ export default function Tetractyses() {
     if (!searchTerm) return tetractysesEntries;
     const searchTermLower = searchTerm.toLowerCase();
     return tetractysesEntries.filter(([, tetractys]) => {
-      const result = (tetractys.result || "").toLowerCase();
+      const result = (tetractys.ten?.prompt || "").toLowerCase();
       return result.includes(searchTermLower);
     });
   }, [searchTerm, tetractysesEntries]);
@@ -69,7 +69,7 @@ export default function Tetractyses() {
           <tbody>
             {filteredTetractysEntries.map(([key, tetractys]) => (
               <tr key={key} className="border-b hover:bg-zinc-800">
-                <td className="p-4">{tetractys.result?.slice(0, 100) || ""}</td>
+                <td className="p-4">{tetractys.ten?.prompt?.slice(0, 100) || ""}</td>
                 <td className="p-4">{new Date(tetractys.createdAt).toLocaleDateString()}</td>
                 <td className="p-4 text-right">
                   <button

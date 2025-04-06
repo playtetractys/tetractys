@@ -20,7 +20,7 @@ export function Tetractys() {
 
   if (!dataToUse) return null;
 
-  return dataToUse?.tetractys?.result ? (
+  return dataToUse?.tetractys?.ten ? (
     <TetractysComplete tetractys={dataToUse.tetractys} />
   ) : (
     <div className={`mt-20 w-full max-w-xl animate__animated ${quoteTransitionClasses}`}>

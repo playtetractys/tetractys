@@ -1,6 +1,6 @@
 import { getOwners } from "@/soil/services/server-data";
 import { get, verifyIdToken } from "@/soil/services/firebase-admin";
-import type { Credits } from "./types";
+import type { UserState } from "./types";
 
 const { FIREBASE_PROJECT_ID } = process.env;
 const ROOT_URI = `https://console.firebase.google.com/u/0/project/${FIREBASE_PROJECT_ID}/database/${FIREBASE_PROJECT_ID}-default-rtdb/data/`;
@@ -39,9 +39,9 @@ export async function verifyTetractysOwnership(request: Request) {
     return new Error(`Unauthorized: ${authResponse.uid} is not an owner of ${tetractysKey}`);
   }
 
-  const creditsPath = `credits/${authResponse.uid}`;
-  const credits = await get<Credits>(creditsPath);
-  if (!credits?.amount || credits.amount <= 0) return new Error("Insufficient credits");
+  const creditsPath = `userState/${authResponse.uid}/aiCredits`;
+  const credits = await get<UserState["aiCredits"]>(creditsPath);
+  if (!credits || credits <= 0) return new Error("Insufficient credits");
 
   return { tetractysKey, authResponse };
 }

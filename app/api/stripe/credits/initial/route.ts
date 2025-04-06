@@ -5,7 +5,7 @@ import { verifyAuth } from "@/services/verify-auth";
 import { get, initializeBackendApp, set } from "@/soil/services/firebase-admin";
 
 // Types
-import type { Credits } from "@/services/types";
+import type { UserState } from "@/services/types";
 
 initializeBackendApp();
 
@@ -16,11 +16,11 @@ export async function GET(request: Request) {
       return NextResponse.json({ error: authResponse.message }, { status: 401 });
     }
 
-    const creditsPath = `credits/${authResponse.uid}`;
-    const credits = await get<Credits>(creditsPath);
+    const creditsPath = `userState/${authResponse.uid}/aiCredits`;
+    const credits = await get<UserState>(creditsPath);
 
     if (!credits) {
-      await set(creditsPath, { amount: 10 });
+      await set(creditsPath, 10);
     }
 
     return NextResponse.json({ success: true });

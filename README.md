@@ -14,6 +14,7 @@ You start the game on Earth or Mars and each choice gives you different starting
 1. Resource gathering strategy (no AI credits)
 1. Exploration goals or directions which uses fuel (e.g. in the direction of the center of the galaxy or toward the rim) (no AI credits)
 1. Research technology (uses AI credits)
+1. Admiral training (uses AI credits)
 
 If you reach the center of the galaxy, you get to create your own galaxy.
 
@@ -65,8 +66,57 @@ FUTURE PHASE: Allow creative users to create and monetize their own content. May
 
 If you make it to the center of the galaxy, you gain access to the admin panel for your galaxy so you can create your own game mechanics.
 
-## Story
+Why does the user need to move their character?
+
+## Data Planning
+
+### Data Types
+
+- Galaxy
+- Galaxy Mechanics
+- Galaxy Manager
+- Star
+- Planet
+- Farcaster
+- User
+- Profile
+- User State
+- Ship
+- Event
+
+### User Writes:
+
+## Background Story
 
 What if the AI revolution creates the technology to enable every human on Earth to be able to explore the galaxy, mine it for resources, and terraform planets? So, in the game you control a fleet of AI controlled ships and robots. Instead of controlling every action your army takes, you update your instructions (AI prompts) every day and your AI fleet (which can be spread all across the galaxy) uses those instructions to take actions for you.
 
 We found that, for AI to be optimally effective, there needs to be a balance between iteration and limitation. Inspired by the Optimal Stopping algorithm AI developed for itself a system of structuring prompts into 10 categories called the tetractys. AI then iterates over these 10 prompts over the course of 24 hours to create the ideal balance between amount of input, time spent processing, and
+
+Quantum Communication is how you can track your AI's progress accross the galaxy. The AI in your command center can decypher the quantum information in entangled electrons. It shows up as glowing ball of light that pulses.
+
+The AI revolution ripped away much of what we thought it was to be human and at the same time crystalized for what it was to be truly human for all of humanity.
+
+### Exploration Strategy: Revolution in Space travel
+
+In the same way the phone, car, and internet allowed us to connect and travel to more than one physical location on earth, AI has enabled us to connect and travel to far more than one planet in our galaxy. By defining an exploration strategy, your AI can
+
+### Research Strategy
+
+If you want to make new discovries, don't forget to define your research strategy so your AI knows what to do and what to look for while it's connecting you to the galaxy.
+
+## Intro Path
+
+1. Background Story
+1.
+
+## Development Path
+
+1. Get your ship
+1. Travel to some resources
+1. Build a resource gathering operation
+1. Build a jump point
+1.
+
+## Galaxy View
+
+In the galaxy view there will be
