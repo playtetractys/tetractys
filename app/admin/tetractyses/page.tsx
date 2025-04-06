@@ -4,8 +4,6 @@ import { useCallback, useMemo, useState } from "react";
 import { removeData } from "@/soil/services/client-data";
 import { toast } from "react-toastify";
 import { useDataType } from "@/soil/hooks/useDataType";
-import { PATHS } from "@/soil/services/paths";
-import { remove } from "@/soil/services/firebase";
 import { useSoilContext } from "@/soil/context";
 
 export default function Tetractyses() {
@@ -30,7 +28,6 @@ export default function Tetractyses() {
       if (!confirm("Are you sure you want to delete this tetractys?")) return;
 
       try {
-        await remove(PATHS.dataKeyFieldKey("user", user.uid, "tetractysHistory", tetractysKey));
         await removeData({
           dataType: "tetractys",
           dataKey: tetractysKey,
