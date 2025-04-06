@@ -1,12 +1,16 @@
 "use client";
 
+import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
-import { Story } from "./story";
-import { StoryStep } from "@/services/types";
-import { StoryPage } from "@/services/types";
-import { WaitList } from "./wait-list";
+
+// Services
+import { StoryStep, StoryPage } from "@/services/types";
 import { useWaitlistContext } from "@/contexts/waitlistContext";
-import { Modal } from "./modal";
+
+// Components
+import { Story } from "@/components/story";
+import { WaitList } from "@/components/wait-list";
+import { Modal } from "@/components/modal";
 
 const STORY = [
   {
@@ -101,6 +105,17 @@ export function InitialStory() {
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
         <WaitList />
       </Modal>
+      {Object.entries(STORY_PAGES).map(([key, page]) => (
+        <Image
+          key={key}
+          priority
+          src={page.image}
+          alt={page.imageAlt}
+          className="absolute bottom-full right-full"
+          width={600}
+          height={600}
+        />
+      ))}
     </>
   );
 }

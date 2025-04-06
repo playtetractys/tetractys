@@ -28,8 +28,9 @@ export function Story({
   return (
     <>
       <Image
-        src={storyPageToUse.image || "/adventure/the_sea.jpg"}
-        alt={storyPageToUse.imageAlt || "mysterious background"}
+        priority
+        src={storyPageToUse.image}
+        alt={storyPageToUse.imageAlt}
         className={`object-cover md:rounded-lg mb-4 md:mb-10 transition-all animate__animated ${storyPageTransitionClasses}`}
         width={600}
         height={600}
