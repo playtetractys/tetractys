@@ -27,14 +27,17 @@ export function Story({
 
   return (
     <>
-      <Image
-        priority
-        src={storyPageToUse.image}
-        alt={storyPageToUse.imageAlt}
-        className={`object-cover md:rounded-lg mb-4 md:mb-10 transition-all animate__animated ${storyPageTransitionClasses}`}
-        width={600}
-        height={600}
-      />
+      <div className="relative w-full h-[300px] md:h-[400px] mb-4 md:mb-10">
+        <Image
+          priority
+          src={storyPageToUse.image}
+          alt={storyPageToUse.imageAlt}
+          className={`object-cover w-full h-full transition-all animate__animated ${storyPageTransitionClasses}`}
+          width={1200}
+          height={400}
+        />
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent" />
+      </div>
 
       {storyPageToUse.title && (
         <h1

@@ -107,7 +107,7 @@ export function InitialStory() {
   );
 
   return (
-    <>
+    <div className="grow w-full max-w-screen-md mx-auto flex flex-col justify-between items-center pb-2">
       <Story storyPage={storyPage} storyStep={storyStep} handleAction={handleAction} />
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
         <WaitList />
@@ -123,6 +123,6 @@ export function InitialStory() {
           height={600}
         />
       ))}
-    </>
+    </div>
   );
 }
