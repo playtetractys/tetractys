@@ -130,6 +130,8 @@ As humanity was going through these growing pains, sattelites began to pick up a
 
 "This fleet of ships called Tetractys was built by automated AI drones. Right now there are 100 individual fleets on their way to Earth and they will be available to applicants
 
+This program is new so please fill out the application and let us know what you would like to see in this program.
+
 ## Revolutions
 
 1. AI Revolution
