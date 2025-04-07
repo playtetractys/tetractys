@@ -5,8 +5,8 @@ import { useEffect, useState } from "react";
 export function useAnimatedTransitionClasses<T>(
   newValue: T,
   duration = 500,
-  entryClass = "animate__zoomIn",
-  exitClass = "animate__zoomOut"
+  entryClass = "animate__fadeIn",
+  exitClass = "animate__fadeOut"
 ) {
   const [animationClass, setAnimationClass] = useState(entryClass);
   const [oldValue, setOldValue] = useState<T>();

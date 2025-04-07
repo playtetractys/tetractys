@@ -11,6 +11,8 @@ import { useAnimatedTransitionClasses } from "@/hooks/useAnimatedTransitionClass
 // Types
 import type { StoryPage, StoryStep as StoryStepType } from "@/services/types";
 
+const ANIMATION_CLASSES = "animate__animated animate__duration-1500 animate__easeInOut";
+
 export function Story({
   storyPage,
   storyStep,
@@ -20,8 +22,8 @@ export function Story({
   storyStep: StoryStepType;
   handleAction: (actionKey: string) => void;
 }) {
-  const [storyPageToUse, storyPageTransitionClasses] = useAnimatedTransitionClasses(storyPage);
-  const [storyStepToUse, storyStepTransitionClasses] = useAnimatedTransitionClasses(storyStep);
+  const [storyPageToUse, storyPageTransitionClasses] = useAnimatedTransitionClasses(storyPage, 1500);
+  const [storyStepToUse, storyStepTransitionClasses] = useAnimatedTransitionClasses(storyStep, 1500);
 
   if (!storyPageToUse || !storyStepToUse) return <div />;
 
@@ -32,7 +34,7 @@ export function Story({
           priority
           src={storyPageToUse.image}
           alt={storyPageToUse.imageAlt}
-          className={`object-cover w-full h-full transition-all animate__animated ${storyPageTransitionClasses}`}
+          className={`object-cover w-full h-full transition-all ${ANIMATION_CLASSES} ${storyPageTransitionClasses}`}
           width={1200}
           height={400}
         />
@@ -41,14 +43,14 @@ export function Story({
 
       {storyPageToUse.title && (
         <h1
-          className={`text-3xl md:text-4xl font-mono my-8 text-center animate__animated ${storyPageTransitionClasses}`}
+          className={`text-3xl md:text-4xl font-mono my-8 text-center ${ANIMATION_CLASSES} ${storyPageTransitionClasses}`}
         >
           {storyPageToUse.title}
         </h1>
       )}
 
       <div
-        className={`max-w-[1000px] mx-auto overflow-y-auto transition-all animate__animated ${storyStepTransitionClasses}`}
+        className={`max-w-[1000px] mx-auto overflow-y-auto transition-all ${ANIMATION_CLASSES} ${storyStepTransitionClasses}`}
       >
         <StoryStep storyStep={storyStepToUse} handleAction={handleAction} />
       </div>

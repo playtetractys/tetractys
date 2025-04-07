@@ -90,3 +90,43 @@ body {
 #tetractys-input:disabled {
   @apply bg-zinc-900 border-zinc-800 resize-none;
 }
+
+.animate__duration-500 {
+  animation-duration: 500ms;
+}
+
+.animate__duration-1000 {
+  animation-duration: 1s;
+}
+
+.animate__duration-1500 {
+  animation-duration: 1.5s;
+}
+
+.animate__duration-2000 {
+  animation-duration: 2s;
+}
+
+.animate__easeInOut {
+  animation-timing-function: ease-in-out;
+}
+
+.animate__easeIn {
+  animation-timing-function: ease-in;
+}
+
+.animate__easeOut {
+  animation-timing-function: ease-out;
+}
+
+.animate__linear {
+  animation-timing-function: linear;
+}
+
+.animate__cubic {
+  animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.animate__bounce {
+  animation-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
