@@ -15,33 +15,40 @@ import { Modal } from "@/components/modal";
 const STORY = [
   {
     storyPageKey: "page-1",
-    storyStepKey: "step-1",
-  },
-  {
-    storyPageKey: "page-1",
-    storyStepKey: "step-2",
+    storyStepKey: "trillionaire1",
   },
   {
     storyPageKey: "page-2",
-    storyStepKey: "step-3",
+    storyStepKey: "trillionaire2",
+  },
+  {
+    storyPageKey: "page-3",
+    storyStepKey: "trillionaire3",
   },
 ] as const;
 
 const STORY_PAGES = {
   "page-1": {
-    image: "/intro/galaxy.png",
-    imageAlt: "image of the milky way galaxy",
+    image: "/intro/mining-drones.png",
+    imageAlt: "Image of mining drones",
+    title: "The Trillionaire",
   },
   "page-2": {
+    image: "/intro/crash.png",
+    imageAlt: "image of markets crashing",
+    title: "The Crash",
+  },
+  "page-3": {
     image: "/intro/earth.jpg",
     imageAlt: "image of the earth",
+    title: "The Gift",
   },
 } as const;
 
 const STORY_STEPS = {
-  "step-1": {
-    text: "Initial Story Step 1",
-    audio: "/intro/intro.mp3",
+  trillionaire1: {
+    audio: "/intro/mining-drones.m4a",
+    text: "In 2033, a mysterious tech trillionaire was able to start a space-based mining company that used Artificially Intelligent spacecraft to harvest, refine, and transport valuable minerals from the asteroid belt. Over the course of 3 decades he flooded the market with gold, silver, and dozens of other rare minerals.",
     buttons: {
       next: {
         text: "Next",
@@ -49,9 +56,9 @@ const STORY_STEPS = {
       },
     },
   },
-  "step-2": {
-    text: "Initial Story Step 2",
-    audio: "/intro/ship.mp3",
+  trillionaire2: {
+    audio: "/intro/mining-drones-2.m4a",
+    text: "Around the year 2065, global markets began to crash while industry all over the world boomed from the availability of cheap minerals. Especially the industries around AI and robotics.",
     buttons: {
       previous: {
         text: "Previous",
@@ -62,9 +69,9 @@ const STORY_STEPS = {
       },
     },
   },
-  "step-3": {
-    text: "Initial Story Step 3",
-    audio: "/intro/intro.mp3",
+  trillionaire3: {
+    audio: "/intro/trillionaire-dies.mp3",
+    text: "When this trillionaire died, he distributed his fortune evenly to every human on Earth and every human that would be born for 100 years. Nobody knew how much money he had but when the first bank transfers started, the people of Earth soon realized he had enough money to make money meaningless.",
     buttons: {
       previous: {
         text: "Previous",
@@ -101,7 +108,7 @@ export function InitialStory() {
 
   return (
     <>
-      <Story storyPage={storyPage} storyStep={storyStep} handleAction={handleAction} />;
+      <Story storyPage={storyPage} storyStep={storyStep} handleAction={handleAction} />
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
         <WaitList />
       </Modal>

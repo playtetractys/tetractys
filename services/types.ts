@@ -34,6 +34,7 @@ export type CreditsRequest = {
 export type StoryPage = {
   image: string;
   imageAlt: string;
+  title?: string;
   photoCredit?: string;
   photoCreditLink?: string;
 };

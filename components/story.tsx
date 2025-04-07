@@ -36,6 +36,14 @@ export function Story({
         height={600}
       />
 
+      {storyPageToUse.title && (
+        <h1
+          className={`text-3xl md:text-4xl font-mono my-8 text-center animate__animated ${storyPageTransitionClasses}`}
+        >
+          {storyPageToUse.title}
+        </h1>
+      )}
+
       <div
         className={`max-w-[1000px] mx-auto overflow-y-auto transition-all animate__animated ${storyStepTransitionClasses}`}
       >

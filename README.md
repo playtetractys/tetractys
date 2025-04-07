@@ -108,17 +108,27 @@ In the same way the phone, car, and internet allowed us to connect and travel to
 
 If you want to make new discovries, don't forget to define your research strategy so your AI knows what to do and what to look for while it's connecting you to the galaxy.
 
-In 2033, a trillionaire named Rob Hoster was able to start a space company that harvested rare minerals from the asteroid belt. Over the course of 3 decades he flooded the market with gold, silver, and dozens of other valuable rare minerals. Markets crashed but industry all over the world boomed. This coincided with a revolution of AI and robotic innovation that replaced practially all human workers with machine workers.
+## Intro Story
 
-When Hoster died, he distributed his fortune evenly to every human on Earth and every human that would be born for 100 years. Nobody knew how much money he had but when the first bank tranfers started, the people of Earth soon realized he had enough money to make money meaningless. Markets around the world fluctuated between crashing and booming. The value of every currencies tanked at the same time as everyone started buying everything they ever wanted or needed. Prices shot up as the balance between supply and demand disappeared completely because demand was now infinte for every product and service in the world. Every company in the world began to haggle with buyers for a higher price but this caused buyers to start asking themselves what these things they've always wanted are really worth to them.
+Welcome to the Tetractys.
 
-Over the next decade, the economic situation came to a head as people accumulated more and more. The global society started to realize that all this stuff didn't mean anything. Everyone was getting everything they had ever wanted and because of machine workers, they didn't have anything to do with their time but play with their new toys.
+In 2033, a mysterious tech trillionaire was able to start a space mining company that used AI to harvest, refine, and transport valuable minerals from the asteroid belt. Over the course of 3 decades he flooded the market with gold, silver, and dozens of other rare minerals.
+
+Around 2065 global markets began to crash but industries all over the world boomed. Especially the industries around AI and robotics.
+
+When this trillionaire died, he distributed his fortune evenly to every human on Earth and every human that would be born for 100 years. Nobody knew how much money he had but when the first bank tranfers started, the people of Earth soon realized he had enough money to make money meaningless.
+
+Trust in financial markets evaporated and the value of every currency tanked. At the same time as everyone started buying everything they ever needed or wanted. Prices shot up as the balance between supply and demand disappeared completely.
+
+Over the next decade, the economic situation came to a head as people accumulated more and more stuff. The global society started to realize that all this stuff didn't mean anything. Everyone was getting everything they had ever wanted and because of machine workers, they didn't have anything meaningful to do with their time.
 
 Social justice became a global obsession. This abundance of time and resources evenly distributed to every person, seemed to completely solve all problems of scarcity and competition. This hit humanity with a one-two punch of communism and social justice movements. Creating perfect equality and righting every wrong became a global obsession. But without poverty for the left to fight against and capitalism for the right to defend, many of the problems of society started to simply disappear. This causesd a crisis of identity and purpose all over the world.
 
 As humanity was going through these growing pains, sattelites began to pick up a gigantic fleet of space ships coming toward Earth. As it passed Mars, it began transmitting to the entire world an audio message recorded by Rob Hoster. In it, he finally explained why he did what he did and the purpose of this massive fleet of spaceships.
 
-"Hello Humanity. First I must apologize for the chaos you've endured as a result of my parting gift. I trust by now you have all learned the lesson that should always follow from great wealth. To put it in my own words, money don't mean shit. I'm sure you're all wonderIn 2025, as the AI revolution kicked into high gear, I quickly realized that it presented many opportunities to humanity; some good, some bad, some existential. But after years of research and experimentation, I believe I have discovered an opportunity for humanity to use AI to thrive and grow like never before."
+"Hello Humanity. First I must apologize for the chaos you've endured as a result of my parting gift. I trust by now you have all learned the lesson that should always follow from great wealth. To put it in my own words, money don't mean shit. I'm sure you're all wonderIn 2025, as the AI revolution kicked into high gear, I quickly realized that it presented many opportunities to humanity; some good, some bad, some existential. But after years of research and experimentation, I believe I have discovered an opportunity for humanity to use AI to thrive and grow like never before.
+
+"This fleet of ships called Tetractys was built by automated AI drones. Right now there are 100 individual fleets on their way to Earth and they will be available to applicants
 
 ## Revolutions
 

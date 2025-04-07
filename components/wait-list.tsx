@@ -77,12 +77,12 @@ export function WaitList() {
   );
 
   return (
-    <div className="px-2 py-10 waitlist-background">
+    <div className="px-2 py-10">
       <MotionDiv direction="up" className="text-center">
-        <h1 className="text-4xl font-mono my-8"> EARLY ACCESS</h1>
-        <h2 className="text-2xl font-bold mb-2">Be the first to play Tetractys!</h2>
+        <h1 className="text-4xl font-mono my-8">TETRACTYS APPLICATION</h1>
+        <h2 className="text-2xl font-semibold mb-6">Apply and save your spot!</h2>
         {!isSubmitted && (
-          <h3 className="text-xl font-semibold font-serif mb-2">
+          <h3 className="text-xl mb-2">
             Join the Waitlist to be among the first to write the story of humaniy across the galaxy!
           </h3>
         )}
