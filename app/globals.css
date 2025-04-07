@@ -44,7 +44,7 @@ body {
 }
 
 .btn-primary {
-  @apply bg-white text-black;
+  @apply bg-white text-black hover:bg-white/90;
 }
 
 .btn-grow {
